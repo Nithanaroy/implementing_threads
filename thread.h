@@ -1,8 +1,9 @@
 /**
- * Methods and declarations for Thread and TCB
+ * Methods and declarations for Thread
  */
 
 #include <stdint.h>
+ #include "q.h"
 
 typedef struct _tcb
 {
