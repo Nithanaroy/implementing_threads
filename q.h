@@ -14,10 +14,11 @@ typedef struct _TCB_t
 	ucontext_t context;
 	struct _TCB_t *prev;
 	struct _TCB_t *next;
+	int dummy; // Only for tracking the queue and assist while printing
 } TCB_t;
 
 bool init_q(TCB_t * head);
-bool add(TCB_t * head, ucontext_t context);
+bool add(TCB_t * head, ucontext_t context, int dummy);
 bool del(TCB_t * head, TCB_t * to_delete);
 bool rotate(TCB_t * head);
 
@@ -34,9 +35,10 @@ TCB_t * new_node() {
 	return new_node;
 }
 
-bool init_q(TCB_t * head) {
+bool init_q(TCB_t * head, int dummy) {
 	head -> next = head;
 	head -> prev = head;
+	head -> dummy = dummy;
 }
 
 /**
@@ -45,11 +47,12 @@ bool init_q(TCB_t * head) {
  * @param context for the new node
  * @return true if successful else false
  */
-bool add(TCB_t * head, ucontext_t context) {
+bool add(TCB_t * head, ucontext_t context, int dummy) {
 	TCB_t * new_node = new_node();
 	new_node -> context = context;
 	new_node -> next = head;
 	new_node -> prev = head -> prev;
+	new_node -> dummy = dummy;
 
 	head -> prev = new_node;
 	new_node -> prev -> next = new_node;
