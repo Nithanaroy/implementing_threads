@@ -1,29 +1,43 @@
-/**
- * Methods and declarations for Thread
- */
+#include <stdio.h>
+#include<stdlib.h>
+#include "q.h"
 
-#include <stdint.h>
- #include "q.h"
 
-typedef struct _tcb
-{
-	/* pointed to PC */
-	uint32_t pc;
-	// uint64_t pc; // TODO
-} tcb;
-
-/**
- * initializes a thread
- * @param the function to run
- */
-void start(void (*function) (void));
-
-/**
- * runs the thread
- */
+void start_thread(void(*function)(void));
 void run();
-
-/**
- * switches the context
- */
 void yield();
+
+struct queue *runQ;
+
+
+void start_thread(void (*function)(void))
+{ // begin pseudo code
+    struct TCB_t *item= (struct TCB_t*)malloc(sizeof  (struct TCB_t));
+      if(item)
+      {
+        item->next=NULL;
+        item->prev=NULL;
+      }
+     void *stack=(void*)malloc(8192);
+     init_TCB(temp,function,stack,8192);
+     addQ(runQ,temp);
+    
+}
+
+void run()
+{   ucontext_t from,to,parent;
+    parent=from;    
+    getcontext(&parent);
+    to=runQ->header->context;   
+    swapcontext(&parent, &to);  
+}
+void yield() // similar to run
+{
+  ucontext_t from,to;
+  getcontext(&from);
+  runQ->header->context=from;
+  rotQueue(runQ);
+  to=runQ->header->context;
+  swapcontext(&from,&to);
+  
+}
