@@ -21,6 +21,19 @@ bool add(TCB_t * head, ucontext_t context);
 bool del(TCB_t * head, TCB_t * to_delete);
 bool rotate(TCB_t * head);
 
+/**
+ * Creates a new node with default settings
+ * @return pointer to the new node created
+ */
+TCB_t * new_node() {
+	TCB_t * new_node = (TCB_t *)malloc(sizeof(TCB_t));
+	new_node -> next = NULL;
+	new_node -> prev = NULL;
+	// ALERT - context variable not set
+
+	return new_node;
+}
+
 bool init_q(TCB_t * head) {
 	head -> next = head;
 	head -> prev = head;
@@ -33,7 +46,7 @@ bool init_q(TCB_t * head) {
  * @return true if successful else false
  */
 bool add(TCB_t * head, ucontext_t context) {
-	TCB_t * new_node = (TCB_t *)malloc(sizeof(TCB_t));
+	TCB_t * new_node = new_node();
 	new_node -> context = context;
 	new_node -> next = head;
 	new_node -> prev = head -> prev;
