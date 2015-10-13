@@ -20,7 +20,7 @@ void start_thread(void (*function)(void))
     }
     void *stack = (void*)malloc(8192);
     init_TCB(item, function, stack, 8192);
-    addQ(runQ, item);
+    AddQ(runQ, item);
 
 }
 
@@ -36,7 +36,7 @@ void yield() // similar to run
     ucontext_t from, to;
     getcontext(&from);
     runQ->context = from;
-    rotQueue(runQ);
+    RotateQ(&runQ);
     to = runQ->context;
     swapcontext(&from, &to);
 

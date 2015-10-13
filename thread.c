@@ -16,13 +16,13 @@ int total_count;
 int main()
 {
 	runQ = (TCB_t*)malloc(sizeof(TCB_t));
-	initQueue(runQ);
+	InitQ(runQ);
 
-	startThread(function1);
-	startThread(function2);
-	startThread(function3);
+	start_thread(function1);
+	start_thread(function2);
+	start_thread(function3);
 
-	runQ();
+	run();
 
 	return 0;
 }
