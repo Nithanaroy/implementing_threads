@@ -7,27 +7,31 @@ void start_thread(void(*function)(void));
 void run();
 void yield();
 
- TCB_t *runQ;
+TCB_t *runQ = NULL;
 
 
-void start_thread(void (*function)(void))
-{   // begin pseudo code
-    TCB_t *item = (TCB_t*)malloc(sizeof  (TCB_t));
-    if (item)
-    {
-        item->next = NULL;
-        item->prev = NULL;
-    }
+void start_thread(void (*function)(void)) {
+    printf("INTIT RUNQ%u\n", sizeof(runQ));
+    TCB_t *item = create_node();
     void *stack = (void*)malloc(8192);
     init_TCB(item, function, stack, 8192);
-    AddQ(runQ, item);
-
+    if (runQ == NULL)
+    {
+        runQ = item;
+    }
+    else {
+        AddQ(runQ, item);
+    }
 }
 
 void run()
 {   ucontext_t from, to, parent;
     parent = from;
-    getcontext(&parent);
+    getcontext(&parent); // main's context
+    if (runQ)
+    {
+        printf("runQ is not NULL, %u\n", sizeof(runQ));
+    }
     to = runQ->context;
     swapcontext(&parent, &to);
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "thread.h"
+#include "unistd.h"
 
 
 void function1(void);
@@ -8,19 +9,16 @@ void function2(void);
 void function3(void);
 
 
-TCB_t *runQ;
-
-
 int total_count;
 
 int main()
 {
-	runQ = (TCB_t*)malloc(sizeof(TCB_t));
+	runQ = create_node();
 	InitQ(runQ);
 
 	start_thread(function1);
-	start_thread(function2);
-	start_thread(function3);
+	// start_thread(function2);
+	// start_thread(function3);
 
 	run();
 
@@ -31,6 +29,7 @@ int main()
 
 void function1() /*does sum of all numbers */
 {
+	printf("Came o thread 1\n");
 	int sum = 0;
 
 	printf("Thread1: Started \n");
@@ -39,11 +38,11 @@ void function1() /*does sum of all numbers */
 
 		total_count++;
 		sum++;
-		printf("Thread Count is %d \t and sum  is %d \t", total_count, sum);
-		yield();
+		printf("Thread Count is %d \t and sum  is %d \n", total_count, sum);
+		// yield();
+		fflush(stdout);
+		sleep(1);
 	}
-
-
 }
 
 void function2() /*gives 5 table output */
