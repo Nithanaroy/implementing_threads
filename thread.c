@@ -7,13 +7,15 @@ void function1(void);
 void function2(void);
 void function3(void);
 
-struct *queue runQ;
+
+TCB_t *runQ;
+
 
 int total_count;
 
 int main()
 {
-	runQ = (struct queue*)malloc(sizeof(struct queue));
+	runQ = (TCB_t*)malloc(sizeof(TCB_t));
 	initQueue(runQ);
 
 	startThread(function1);
@@ -35,7 +37,7 @@ void function1() /*does sum of all numbers */
 	while (1)
 	{
 
-		totalcount++;
+		total_count++;
 		sum++;
 		printf("Thread Count is %d \t and sum  is %d \t", total_count, sum);
 		yield();
@@ -52,7 +54,7 @@ void function2() /*gives 5 table output */
 	while (1)
 	{
 
-		totalcount++;
+		total_count++;
 		sum = sum + 5;
 		printf("Thread Count is %d \t and sum  is %d \t", total_count, sum);
 		yield();
@@ -70,7 +72,7 @@ void function3() /*gives 10 table output */
 	while (1)
 	{
 
-		totalcount++;
+		total_count++;
 		sum = sum + 10;
 		printf("Thread Count is %d \t and sum  is %d \t", total_count, sum);
 		yield();
