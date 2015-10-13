@@ -30,15 +30,17 @@ int main()
 void function1() /*does sum of all numbers */
 {
 	int sum = 0;
-	int threadID = 1;
+	int i=0;
 
 	printf("Thread1: Started \n");
 	while (1)
 	{
-
+		i++;
 		total_count++;
-		sum++;
-		printf("Thread ID: %d is %d and sum  is %d \n", threadID, total_count, sum);
+		sum=sum+2;
+		printf("Thread global count is %d \n ",total_count);
+		printf("Printing 2 table !!! \t\t\t");
+		printf("Thread 1: 2*%d =%d \n\n\n",i,sum);
 		yield();
 		fflush(stdout);
 		sleep(1);
@@ -48,15 +50,18 @@ void function1() /*does sum of all numbers */
 void function2() /*gives 5 table output */
 {
 	int sum = 0;
-	int threadID = 2;
+	int i=0;
 
 	printf("Thread2: Started \n");
 	while (1)
 	{
 
 		total_count++;
+		i++;
 		sum = sum + 5;
-		printf("Thread ID: %d is %d and sum  is %d \n", threadID, total_count, sum);
+		printf("Thread global count is %d \n",total_count);
+		printf("Printing 5 table !!!\t\t\t");
+		printf("Thread 2: 5*%d= %d \n\n\n",i, sum);
 		yield();
 		fflush(stdout);
 		sleep(1);
@@ -69,15 +74,18 @@ void function2() /*gives 5 table output */
 void function3() /*gives 10 table output */
 {
 	int sum = 0;
-	int threadID = 3;
+	int i=0;
 
 	printf("Thread3: Started \n");
 	while (1)
 	{
-
+		printf("Printing 10 table\n");
+		i++;
 		total_count++;
 		sum = sum + 10;
-		printf("Thread ID: %d is %d and sum  is %d \n", threadID, total_count, sum);
+		printf("Thread global count is %d \n",total_count);
+		printf("Printing 10 table !!!\t\t\t");
+		printf("Thread 3: 10*%d= %d \n\n\n",i, sum);
 		yield();
 		fflush(stdout);
 		sleep(1);

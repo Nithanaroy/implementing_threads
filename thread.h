@@ -20,7 +20,6 @@ void start_thread(void (*function)(void)) {
         runQ = item;
     }
     else {
-        printf("Wont print\n");
         AddQ(runQ, item);
     }
 }
@@ -29,10 +28,6 @@ void run()
 {   ucontext_t from, to, parent;
     parent = from;
     getcontext(&parent); // main's context
-    if (runQ)
-    {
-        printf("runQ is not NULL, %u\n", sizeof(runQ));
-    }
     to = runQ->context;
     swapcontext(&parent, &to);
 }
