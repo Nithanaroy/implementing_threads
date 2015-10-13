@@ -13,12 +13,12 @@ int total_count;
 
 int main()
 {
-	runQ = create_node();
-	InitQ(runQ);
+	// runQ = create_node();
+	// InitQ(runQ);
 
 	start_thread(function1);
-	// start_thread(function2);
-	// start_thread(function3);
+	start_thread(function2);
+	start_thread(function3);
 
 	run();
 
@@ -29,8 +29,8 @@ int main()
 
 void function1() /*does sum of all numbers */
 {
-	printf("Came o thread 1\n");
 	int sum = 0;
+	int threadID = 1;
 
 	printf("Thread1: Started \n");
 	while (1)
@@ -38,8 +38,8 @@ void function1() /*does sum of all numbers */
 
 		total_count++;
 		sum++;
-		printf("Thread Count is %d \t and sum  is %d \n", total_count, sum);
-		// yield();
+		printf("Thread ID: %d is %d and sum  is %d \n", threadID, total_count, sum);
+		yield();
 		fflush(stdout);
 		sleep(1);
 	}
@@ -48,6 +48,7 @@ void function1() /*does sum of all numbers */
 void function2() /*gives 5 table output */
 {
 	int sum = 0;
+	int threadID = 2;
 
 	printf("Thread2: Started \n");
 	while (1)
@@ -55,8 +56,10 @@ void function2() /*gives 5 table output */
 
 		total_count++;
 		sum = sum + 5;
-		printf("Thread Count is %d \t and sum  is %d \t", total_count, sum);
+		printf("Thread ID: %d is %d and sum  is %d \n", threadID, total_count, sum);
 		yield();
+		fflush(stdout);
+		sleep(1);
 	}
 
 
@@ -66,6 +69,7 @@ void function2() /*gives 5 table output */
 void function3() /*gives 10 table output */
 {
 	int sum = 0;
+	int threadID = 3;
 
 	printf("Thread3: Started \n");
 	while (1)
@@ -73,8 +77,10 @@ void function3() /*gives 10 table output */
 
 		total_count++;
 		sum = sum + 10;
-		printf("Thread Count is %d \t and sum  is %d \t", total_count, sum);
+		printf("Thread ID: %d is %d and sum  is %d \n", threadID, total_count, sum);
 		yield();
+		fflush(stdout);
+		sleep(1);
 	}
 
 

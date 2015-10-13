@@ -11,17 +11,18 @@ TCB_t *runQ = NULL;
 
 
 void start_thread(void (*function)(void)) {
-    printf("INTIT RUNQ%u\n", sizeof(runQ));
-    // TCB_t *item = create_node();
+    TCB_t *item = create_node();
     void *stack = (void*)malloc(8192);
-    init_TCB(runQ, function, stack, 8192);
-    // if (runQ == NULL)
-    // {
-    //     runQ = item;
-    // }
-    // else {
-    //     AddQ(runQ, item);
-    // }
+    init_TCB(item, function, stack, 8192);
+    if (runQ == NULL)
+    {
+        InitQ(item);
+        runQ = item;
+    }
+    else {
+        printf("Wont print\n");
+        AddQ(runQ, item);
+    }
 }
 
 void run()
