@@ -19,7 +19,7 @@ TCB_t * create_node() {
 	return new_node;
 }
 
-bool init_q(TCB_t * head) {
+bool InitQ (TCB_t * head) {
 	// ALERT: we assume that the content of head, viz context, is set by the caller
 	// here we only manage the links among the nodes in the queue
 	head -> next = head;
@@ -32,7 +32,7 @@ bool init_q(TCB_t * head) {
  * @param new node to add to the queue
  * @return true if successful else false
  */
-bool add(TCB_t * head, TCB_t * new_node) {
+bool AddQ(TCB_t * head, TCB_t * new_node) {
 	if (head == NULL || new_node == NULL)
 	{
 		return false;
@@ -55,7 +55,7 @@ bool add(TCB_t * head, TCB_t * new_node) {
  * @param node to delete
  * @return true if successful else false
  */
-bool del(TCB_t ** head, TCB_t * to_delete) {
+bool DelQ(TCB_t ** head, TCB_t * to_delete) {
 	// in correct arguments
 	if (head == NULL || to_delete == NULL)
 	{
@@ -112,7 +112,7 @@ bool del(TCB_t ** head, TCB_t * to_delete) {
  * @param pointer the head
  * @return true if succesful, else false
  */
-bool rotate(TCB_t ** head) {
+bool RotateQ(TCB_t ** head) {
 	if (head == NULL)
 	{
 		return false;
@@ -121,7 +121,7 @@ bool rotate(TCB_t ** head) {
 	// if the queue is not empty
 	if (*head != NULL)
 	{
-		// this is equivalent to, taking the head element and putting it at the end of the queue, in a 
+		// this is equivalent to, taking the head element and putting it at the end of the queue, in a
 		// circual doubly linked list
 		*head = (*head) -> next;
 	}

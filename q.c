@@ -45,28 +45,28 @@ void test_add_element() {
  */
 void test_delete_element_with_incorrect_args() {
 	// should return false if either of the args is in correct
-	assert(del(NULL, NULL) == false);
+	assert(DelQ(NULL, NULL) == false);
 
 	// should return false if either of the args is in correct
 	TCB_t * head = create_node();
-	assert(del(&head, NULL) == false);
+	assert(DelQ(&head, NULL) == false);
 
 	// should return false if either of the args is in correct
 	TCB_t * node = create_node();
-	assert(del(NULL, node) == false);
+	assert(DelQ(NULL, node) == false);
 
 	printf("test_delete_element_with_incorrect_args() passed\n");
 }
 
 /**
  * a test that checks delete function by deleting the only element head, in the queue
- * pre-condition: create_node() and init_q() work correctly
+ * pre-condition: create_node() and InitQ() work correctly
  */
 void test_delete_only_element() {
 	// only head is present in the queue and we want to delete it
 	TCB_t * head = create_node();
-	init_q(head);
-	assert(del(&head, head) == true);
+	InitQ(head);
+	assert(DelQ(&head, head) == true);
 	assert(head == NULL);
 
 	printf("test_delete_only_element() passed\n");
@@ -74,16 +74,16 @@ void test_delete_only_element() {
 
 /**
  * a test that checks delete function when the queue is empty
- * pre-condition: create_node() and init_q() work correctly
+ * pre-condition: create_node() and InitQ() work correctly
  */
 void test_delete_element_from_empty_queue() {
 	TCB_t * head = create_node();
-	init_q(head);
-	del(&head, head); // empty list now
+	InitQ(head);
+	DelQ(&head, head); // empty list now
 
 	TCB_t * node = create_node();
 	// trying to delete some element from an empty queue
-	assert(del(&head, node) == false);
+	assert(DelQ(&head, node) == false);
 
 	printf("test_delete_element_from_empty_queue() passed\n");
 }
@@ -109,7 +109,7 @@ void test_delete_last_element() {
  * a test to check if rotate queue handles invalid arguments correctly
  */
 void test_rotate_queue_with_invalid_args() {
-	assert(rotate(NULL) == false);
+	assert(RotateQ(NULL) == false);
 
 	printf("test_rotate_queue_with_invalid_args() passed\n");
 }
@@ -118,14 +118,14 @@ void test_rotate_queue_with_invalid_args() {
  * a test to check if rotate queue handles empty queues
  * pre-condition: delete single element queue works correctly
  * pre-condition: create_node() works correctly
- * pre-condition: init_q() works correctly
+ * pre-condition: InitQ() works correctly
  */
 void test_rotate_empty_queue() {
 	TCB_t * head = create_node();
-	init_q(head);
-	del(&head, head); // empty queue
+	InitQ(head);
+	DelQ(&head, head); // empty queue
 
-	assert(rotate(&head) == true);
+	assert(RotateQ(&head) == true);
 
 	printf("test_rotate_empty_queue() passed\n");
 }

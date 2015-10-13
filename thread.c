@@ -7,7 +7,7 @@ void function1(void);
 void function2(void);
 void function3(void);
 
-strict *queue runQ;
+struct *queue runQ;
 
 int total_count;
 
