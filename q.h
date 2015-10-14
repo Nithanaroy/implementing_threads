@@ -2,15 +2,21 @@
  * Methods and declarations for Queue and Node
  */
 
-#include "constants.h"
+
 #include "tcb.h"
 #include "malloc.h"
+
+#define true 1;  /*defining true as 1 */
+#define false 0; /* defining false as 0*/
+
+ typedef  int bool;
+
 
 /**
  * Creates a new node with default settings
  * @return pointer to the new node created
  */
-TCB_t * create_node() {
+TCB_t * create_node() {    /*creates a node of TCB_T sturcture */
 	TCB_t * new_node = (TCB_t *)malloc(sizeof(TCB_t));
 	new_node -> next = NULL;
 	new_node -> prev = NULL;
@@ -19,7 +25,7 @@ TCB_t * create_node() {
 	return new_node;
 }
 
-bool InitQ (TCB_t * head) {
+bool InitQ (TCB_t * head) {    /* initilized the pointer of the queue with NULL */
 	// ALERT: we assume that the content of head, viz context, is set by the caller
 	// here we only manage the links among the nodes in the queue
 	head -> next = head;
