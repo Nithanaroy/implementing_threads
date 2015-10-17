@@ -1,3 +1,15 @@
+/* Author1 name: Nitin Pasumarthy
+   ID :1207666508
+   email ID: npasumar@asu.edu */
+ 
+/* Author1 name: Tanushree Chakravorty
+   ID :1207664935
+   email ID: tkchakra@asu.edu */
+
+/* Author1 name: Alekhya Cheruvu
+   ID :1209209296
+   email ID: acheruvu@asu.edu */
+
 /**
  * Methods and declarations for Queue and Node
  */
@@ -61,18 +73,18 @@ bool AddQ(TCB_t * head, TCB_t * new_node) {
  * @param node to delete
  * @return true if successful else false
  */
-bool DelQ(TCB_t ** head, TCB_t * to_delete) {
+TCB_t* DelQ(TCB_t ** head, TCB_t * to_delete) {
 	// in correct arguments
 	if (head == NULL || to_delete == NULL)
 	{
-		return false;
+		return NULL;
 	}
 
 	TCB_t * _head = *head;
 	// queue is empty but user wants to delete a node!
 	if (*head == NULL && to_delete != NULL)
 	{
-		return false;
+		return NULL;
 	}
 
 	// queue is not empty
@@ -95,7 +107,7 @@ bool DelQ(TCB_t ** head, TCB_t * to_delete) {
 				(*head) -> prev = old_head -> prev;
 				tail -> next = _head;
 
-				free(old_head);
+				return old_head;
 			}
 		}
 		else {
@@ -106,11 +118,11 @@ bool DelQ(TCB_t ** head, TCB_t * to_delete) {
 			to_delete_prev -> next = to_delete -> next;
 			to_delete_next -> prev = to_delete -> prev;
 
-			free(to_delete);
+			return to_delete;
 		}
 	}
 
-	return true;
+
 }
 
 /**

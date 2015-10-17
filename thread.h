@@ -1,3 +1,18 @@
+
+/* Author1 name: Nitin Pasumarthy
+   ID :1207666508
+   email ID: npasumar@asu.edu */
+ 
+/* Author1 name: Tanushree Chakravorty
+   ID :1207664935
+   email ID: tkchakra@asu.edu */
+
+/* Author1 name: Alekhya Cheruvu
+   ID :1209209296
+   email ID: acheruvu@asu.edu */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "q.h"
