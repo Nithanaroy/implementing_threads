@@ -2,6 +2,8 @@
 
 int total_count = 0;
 
+Semaphore_t *sem;
+
 void function1() /*does sum of all numbers */
 {
 	int sum = 0;
