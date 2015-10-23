@@ -95,8 +95,10 @@ TCB_t* DelQ(TCB_t ** head, TCB_t * to_delete) {
 			// head is the only element in the queue and that has to be deleted
 			if (_head -> next == _head)
 			{
-				free(_head);
+				// free(_head);
+				TCB_t * temp = *head;
 				*head = NULL; // empty queue
+				return temp;
 			}
 			else {
 				// head has to be deleted but it is not the only element
@@ -125,6 +127,8 @@ TCB_t* DelQ(TCB_t ** head, TCB_t * to_delete) {
 
 }
 
+
+// TODO: Failing if only one element
 /**
  * Moves the head node to the end of the queue
  * @param pointer the head
