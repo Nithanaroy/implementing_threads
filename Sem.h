@@ -3,7 +3,7 @@
 #include "thread.h"
 
 typedef struct semaphore {
-	int value;                           /*semaphore structure having value and semaphore queue */
+	int value;                                          /*semaphore structure having value and semaphore queue */
 	TCB_t  *semQ;
 } Semaphore_t;
 
@@ -41,8 +41,13 @@ void P(Semaphore_t **sem)               /* p operation of semaphore */
 		}
 
 		ucontext_t from, to;
+<<<<<<< HEAD
 		getcontext(&from);					// main
 		to = temp->context;					// function1
+=======
+		getcontext(&to);					// main
+		from = temp->context;					// function1
+>>>>>>> 434ed7ffd4fe3ab0544bf9f20ebd8bc5379b930d
 		swapcontext(&from, &to);
 	}
 
@@ -62,5 +67,4 @@ void V(Semaphore_t **sem)
 		temp = DelQ(&runQ, (*sem)->semQ);
 		AddQ(&runQ, temp);
 	}
-	// yield();
 }

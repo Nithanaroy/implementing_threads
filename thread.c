@@ -9,7 +9,7 @@ void function2(void);
 void function3(void);
 
 
-int total_count;
+int total_count;  
 
 int main()
 {
