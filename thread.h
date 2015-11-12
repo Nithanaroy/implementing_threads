@@ -35,7 +35,7 @@ void start_thread(void (*function)(void)) {   /* starts the thread */
         runQ = item;
     }
     else {          
-        AddQ(runQ, item);                     /* add the item to the run queue */
+        AddQ(&runQ, item);                     /* add the item to the run queue */
     }
 }
 

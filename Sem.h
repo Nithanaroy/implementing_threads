@@ -37,7 +37,7 @@ void P(Semaphore_t **sem)               /* p operation of semaphore */
 		}
 		else
 		{
-			AddQ((*sem)->semQ, temp);
+			AddQ(&((*sem)->semQ), temp);
 		}
 
 		ucontext_t from, to;
@@ -60,7 +60,7 @@ void V(Semaphore_t **sem)
 	{
 		TCB_t *temp;               /* deleting the element from semaphore q and putiing it on runQ */
 		temp = DelQ(&runQ, (*sem)->semQ);
-		AddQ(runQ, temp);
+		AddQ(&runQ, temp);
 	}
 	// yield();
 }

@@ -1,7 +1,7 @@
 /* Author1 name: Nitin Pasumarthy
    ID :1207666508
    email ID: npasumar@asu.edu */
- 
+
 /* Author1 name: Tanushree Chakravorty
    ID :1207664935
    email ID: tkchakra@asu.edu */
@@ -21,7 +21,7 @@
 #define true 1;  /*defining true as 1 */
 #define false 0; /* defining false as 0*/
 
- typedef  int bool;
+typedef  int bool;
 
 
 /**
@@ -50,11 +50,19 @@ bool InitQ (TCB_t * head) {    /* initilized the pointer of the queue with NULL 
  * @param new node to add to the queue
  * @return true if successful else false
  */
-bool AddQ(TCB_t * head, TCB_t * new_node) {
-	if (head == NULL || new_node == NULL)
+bool AddQ(TCB_t ** _head, TCB_t * new_node) {
+	if (new_node == NULL)
 	{
 		return false;
 	}
+
+	if (*_head == NULL)
+	{
+		*_head = new_node;
+		InitQ(*_head);
+	}
+	TCB_t * head = *_head;
+
 
 	// ALERT: we assume that the content of this node, viz context, is set by the caller
 	// here we only manage the links among the nodes in the queue
