@@ -28,10 +28,9 @@ void P(Semaphore_t **sem)               /* p operation of semaphore */
 
 	if ((*sem)->value < 0)           /* if less than 0 blocking the current process on sempahore queue */
 	{
-		printf("Shouldnt come here\n");
 		TCB_t *temp;
 		temp = DelQ(&runQ, runQ);
-		if ((*sem)->semQ == NULL)                         /* if the item is the 1st node then queue pointer should point the item */
+		if ((*sem)->semQ == NULL) /* if the item is the 1st node then queue pointer should point the item */
 		{
 			InitQ(temp);
 			(*sem)->semQ = temp;
@@ -42,9 +41,8 @@ void P(Semaphore_t **sem)               /* p operation of semaphore */
 		}
 
 		ucontext_t from, to;
-		getcontext(&to);					// main
-		// runQ->context = from;
-		from = temp->context;					// function1
+		getcontext(&from);					// main
+		to = temp->context;					// function1
 		swapcontext(&from, &to);
 	}
 
