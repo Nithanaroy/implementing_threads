@@ -41,13 +41,8 @@ void P(Semaphore_t **sem)               /* p operation of semaphore */
 		}
 
 		ucontext_t from, to;
-<<<<<<< HEAD
 		getcontext(&from);					// main
 		to = temp->context;					// function1
-=======
-		getcontext(&to);					// main
-		from = temp->context;					// function1
->>>>>>> 434ed7ffd4fe3ab0544bf9f20ebd8bc5379b930d
 		swapcontext(&from, &to);
 	}
 
